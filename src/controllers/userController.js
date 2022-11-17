@@ -3,10 +3,11 @@ const userService = require("../services/userService");
 const signup = async (req, res) => {
   try {
     const { name, phone, email, password } = req.body;
+    if (!name || !phone || !password || !email) {
+      throw new Error("KEY_ERROR");
+    }
     const insertId = await userService.signup(name, phone, email, password);
-    console.log(insertId);
-    // res.status(201).json({ message: "successfully created!!!" });
-    return res.status(201).json({ insertId });
+    return res.status(201).json(insertId.insertId);
   } catch (err) {
     res.status(err.statusCode || 400).json({ error: err.message });
   }

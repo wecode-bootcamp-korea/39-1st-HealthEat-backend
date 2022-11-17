@@ -2,7 +2,7 @@ const { sqlDataSource } = require("./data-source");
 
 const createUser = async (name, phone, email, password) => {
   try {
-    await sqlDataSource.query(
+    return await sqlDataSource.query(
       `INSERT INTO users(
         name,
         phone,
@@ -20,7 +20,7 @@ const createUser = async (name, phone, email, password) => {
 const getUserByEmail = async (email) => {
   const [user] = await sqlDataSource.query(
     `
-        SELECT *
+        SELECT name,phone,email,password
         FROM users
         WHERE users.email = ?
         `,
