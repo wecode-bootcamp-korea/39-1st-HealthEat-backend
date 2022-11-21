@@ -1,6 +1,6 @@
 const { sqlDataSource } = require("./data-source");
 
-const getProductByCategory = async (categoryId) => {
+const getProductByCategory = async (limit, offset, categoryId) => {
   const products = await sqlDataSource.query(
     `
         SELECT
@@ -16,8 +16,9 @@ const getProductByCategory = async (categoryId) => {
         INNER JOIN categories c
         ON p.category_id = c.id
         WHERE category_id = ?
+        LIMIT ? OFFSET ?
         `,
-    [categoryId]
+    [categoryId, limit, offset]
   );
   return products;
 };
@@ -42,7 +43,7 @@ const getProductByStock = async () => {
   );
   return products;
 };
-const getProductByParameter = async (result) => {
+const getProductByParameter = async (limit, offset, sort, builder) => {
   const products = await sqlDataSource.query(
     `
             SELECT
@@ -56,8 +57,11 @@ const getProductByParameter = async (result) => {
                 discount_rate
             FROM products p
             INNER JOIN brands b ON p.brand_id = b.id
-            ${result}
-            `
+            ${builder}
+            ${sort}
+            LIMIT ? OFFSET ?
+            `,
+    [limit, offset]
   );
   return products;
 };
