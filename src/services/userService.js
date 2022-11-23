@@ -30,4 +30,9 @@ const signin = async (email, password) => {
   return jwtToken;
 };
 
-module.exports = { signup, signin };
+const getUserById = async (id) => {
+  const user = await userDao.getUserById(id)
+  return user
+}
+
+module.exports = { signup, signin, getUserById };
