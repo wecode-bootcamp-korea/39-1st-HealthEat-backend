@@ -21,16 +21,4 @@ const getLikeList = async (req, res) => {
     return res.status(200).json(result)
 }
 
-const deleteLike = async (req, res) => {
-    try {
-    
-    const { productId } = req.params;
-    const userId = req.user.id;
-    
-    const result = await likeService.deleteLike(productId, userId)
-    return res.status(200).json(result)
-    } catch(err) {
-    }
-}
-
 module.exports = { createLike, getLikeList, deleteLike }
