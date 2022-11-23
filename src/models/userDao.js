@@ -10,7 +10,7 @@ const createUser = async (name, phone, email, password) => {
         password) 
       VALUES (?, ?, ?, ?)
           `,
-      [name, phone, email, password]
+      [ name, phone, email, password ]
     );
   } catch (err) {
     throw new Error("INVALID DATA INPUT");
@@ -20,13 +20,40 @@ const createUser = async (name, phone, email, password) => {
 const getUserByEmail = async (email) => {
   const [user] = await sqlDataSource.query(
     `
-        SELECT name,phone,email,password
-        FROM users
-        WHERE users.email = ?
+        SELECT 
+          id,
+          name,
+          phone,
+          email,
+          password
+        FROM
+          users
+        WHERE
+          users.email = ?
         `,
-    [email]
+    [ email ]
   );
   return user;
 };
 
-module.exports = { getUserByEmail, createUser };
+const getUserById = async (id) => {
+  const [user] = await sqlDataSource.query(
+    `
+        SELECT
+          id,
+          name,
+          phone,
+          email,
+          password
+        FROM 
+          users
+        WHERE 
+          users.id = ?
+        `,
+    [ id ]
+  );
+  
+  return user;
+};
+
+module.exports = { getUserByEmail, createUser,getUserById };
