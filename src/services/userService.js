@@ -35,5 +35,4 @@ const getUserById = async (id) => {
   return userId
 }
 
-
 module.exports = { signup, signin, getUserById };
