@@ -3,8 +3,8 @@ const { Errors } = require("../util/errors");
 const { catchAsync } = require("../util/errors");
 
 const createLike = catchAsync(async (req, res) => {
-  const { productId } = req.body;
   const userId = req.user.id;
+  const { productId } = req.body;
 
   if (!productId) {
     throw new Error("KEY_ERROR");
@@ -15,10 +15,10 @@ const createLike = catchAsync(async (req, res) => {
 });
 
 const getLikeList = async (req, res) => {
-  const { userId } = req.body;
+  const userId = req.user.id;
 
-  const result = await likeService.getLikeList(userId);
-  return res.status(200).json(result);
+  const [products, name] = await likeService.getLikeList(userId);
+  res.status(200).json([products, name]);
 };
 
 module.exports = { createLike, getLikeList };
