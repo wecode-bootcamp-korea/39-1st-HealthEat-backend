@@ -1,13 +1,3 @@
-const orderBy = (value) => {
-  const sort = {
-    lowPrice: "ORDER BY price",
-    highPrice: "ORDER BY price DESC",
-    id: "ORDER BY id",
-    best: "ORDER BY stock",
-  };
-  return `${sort[value]}`;
-};
-
 const brandFilterBuilder = (value) => {
   //need to check what the type of value is
   if (typeof value == "string") {
@@ -53,4 +43,4 @@ const makeProductQueryBuilders = (params) => {
   } else return "";
 };
 
-module.exports = { makeProductQueryBuilders, brandFilterBuilder, orderBy };
+module.exports = { makeProductQueryBuilders, brandFilterBuilder };

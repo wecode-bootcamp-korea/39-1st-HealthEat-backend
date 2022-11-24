@@ -9,12 +9,14 @@ const getProductByParameter = async (params) => {
     ...filterOptions
   } = params;
 
-  return await productDao.getProductByParameter(
+  const result = await productDao.getProductByParameter(
     Number(limit),
     Number(offset),
     filterOptions,
     sortMethod
   );
+
+  return result;
 };
 
 module.exports = {
