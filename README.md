@@ -37,10 +37,9 @@
     - 제품 전체 페이지
         - 필터,정렬, 페이지네이션을 적용하여 리스트 불러오는 api구현
     - 제품 상세 페이지
-    - API Document
+    - [API Document](https://documenter.getpostman.com/view/24101709/2s8YmUMzja)
+      
 - 이은영
-    - 로그인, 회원가입
-        - Bcrypt 암호화와 JsonWebToken 인증을 적용한 회원가입, 로그인 기능 API 구현
     - 찜하기 생성, 조회 및 삭제 API 구현
         - JsonWebToken을 통하여 얻은 user id로 제품 찜하기 Create, Read, Delete 구현
     - API Document
