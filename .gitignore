@@ -4,6 +4,7 @@
 schema.sql
 ### dotenv ###
 .env
+.env.test
 
 ### Linux ###
 *~
