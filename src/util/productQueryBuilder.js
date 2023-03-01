@@ -11,19 +11,15 @@ const brandFilterBuilder = (value) => {
 };
 
 const minPriceFilterBuilder = (value) => {
-  // return `price BETWEEN ${value}`;
   return `price >= ${value}`;
 };
 const maxPriceFilterBuilder = (value) => {
-  // return `${value}`;
   return `price <= ${value}`;
 };
 const categoryFilterBuilder = (value) => {
-  // return `${value}`;
   return `category_id = ${value}`;
 };
 const detailFilterBuilder = (value) => {
-  // return `${value}`;
   return `p.id = ${value}`;
 };
 const makeProductQueryBuilders = (params) => {
@@ -35,9 +31,7 @@ const makeProductQueryBuilders = (params) => {
     id: detailFilterBuilder,
   };
 
-  const whereClauses = Object.entries(params).map(([key, value]) =>
-    builderSet[key](value)
-  );
+  const whereClauses = Object.entries(params).map(([key, value]) => builderSet[key](value));
   if (whereClauses.length !== 0) {
     return `WHERE ${whereClauses.join(" AND ")}`;
   } else return "";

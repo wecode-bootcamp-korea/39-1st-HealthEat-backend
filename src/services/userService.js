@@ -31,8 +31,8 @@ const signin = async (email, password) => {
 };
 
 const getUserById = async (id) => {
-  const user = await userDao.getUserById(id)
-  return user
-}
+  const user = await userDao.getUserById(id);
+  return user;
+};
 
 module.exports = { signup, signin, getUserById };

@@ -10,7 +10,7 @@ const createUser = async (name, phone, email, password) => {
         password) 
       VALUES (?, ?, ?, ?)
           `,
-      [ name, phone, email, password ]
+      [name, phone, email, password]
     );
   } catch (err) {
     throw new Error("INVALID DATA INPUT");
@@ -31,7 +31,7 @@ const getUserByEmail = async (email) => {
         WHERE
           users.email = ?
         `,
-    [ email ]
+    [email]
   );
   return user;
 };
@@ -50,10 +50,10 @@ const getUserById = async (id) => {
         WHERE 
           users.id = ?
         `,
-    [ id ]
+    [id]
   );
-  
+
   return user;
 };
 
-module.exports = { getUserByEmail, createUser,getUserById };
+module.exports = { getUserByEmail, createUser, getUserById };

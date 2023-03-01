@@ -1,9 +1,7 @@
-require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 
-const { sqlDataSource } = require("./src/models/data-source");
 const { router } = require("./src/routes");
 const { globalErrorHandler } = require("./src/util/errors");
 

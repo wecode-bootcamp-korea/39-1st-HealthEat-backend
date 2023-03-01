@@ -1,5 +1,6 @@
+require("dotenv").config();
 const { sqlDataSource } = require("./src/models/data-source");
-const createApp = require("./app");
+const { createApp } = require("./app");
 
 const start = async () => {
   const app = createApp();
@@ -15,8 +16,8 @@ const start = async () => {
     });
   app.listen(PORT, () => console.log(`server is listening on ${PORT}`));
 };
-app.get("/ping", (req, res) => {
-  return res.status(200).json({ message: "pong" });
-});
+// app.get("/ping", (req, res) => {
+//   return res.status(200).json({ message: "pong" });
+// });
 
 start();
