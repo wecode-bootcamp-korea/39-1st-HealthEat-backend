@@ -10,10 +10,28 @@ const createUser = async (name, phone, email, password) => {
         password) 
       VALUES (?, ?, ?, ?)
           `,
-      [ name, phone, email, password ]
+      [name, phone, email, password]
     );
   } catch (err) {
+    console.log(err);
     throw new Error("INVALID DATA INPUT");
+  }
+};
+
+const createRefreshToken = async (refresh_token, userId) => {
+  try {
+    await sqlDataSource.query(
+      `
+      UPDATE 
+        users 
+      SET 
+        refresh_token= ?
+      WHERE id = ? `,
+      [refresh_token, userId]
+    );
+  } catch (err) {
+    console.log(err);
+    throw new Error("error: refresh token");
   }
 };
 
@@ -31,7 +49,7 @@ const getUserByEmail = async (email) => {
         WHERE
           users.email = ?
         `,
-    [ email ]
+    [email]
   );
   return user;
 };
@@ -50,10 +68,10 @@ const getUserById = async (id) => {
         WHERE 
           users.id = ?
         `,
-    [ id ]
+    [id]
   );
-  
+
   return user;
 };
 
-module.exports = { getUserByEmail, createUser,getUserById };
+module.exports = { getUserByEmail, createUser, getUserById, createRefreshToken };

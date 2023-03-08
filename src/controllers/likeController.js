@@ -3,7 +3,7 @@ const { Errors } = require("../util/errors");
 const { catchAsync } = require("../util/errors");
 
 const createLike = catchAsync(async (req, res) => {
-  const userId = req.user.id;
+  const userId = req.id;
   const { productId } = req.body;
 
   if (!productId) {
@@ -15,7 +15,7 @@ const createLike = catchAsync(async (req, res) => {
 });
 
 const getLikeList = async (req, res) => {
-  const userId = req.user.id;
+  const userId = req.id;
 
   const [products, name] = await likeService.getLikeList(userId);
   res.status(200).json([products, name]);
